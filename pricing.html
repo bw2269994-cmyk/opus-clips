@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Simple, transparent pricing for Clipwise." />
+  <title>Pricing — Clipwise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .pricing-hero { text-align: center; margin-bottom: 80px; }
+    .pricing-hero .eyebrow { margin-bottom: 16px; }
+    .pricing-hero h1 { font-family: 'Space Grotesk'; font-size: 48px; letter-spacing: -2px; margin: 0 0 12px; }
+    .pricing-hero p { color: #7e8d87; font-size: 18px; max-width: 520px; margin: 0 auto; }
+    .billing-toggle { display: flex; gap: 12px; justify-content: center; align-items: center; margin-top: 32px; margin-bottom: 48px; }
+    .toggle-label { font-size: 14px; color: #8a9793; }
+    .toggle-switch { position: relative; width: 50px; height: 28px; background: #e9f0eb; border-radius: 14px; cursor: pointer; transition: .3s; border: 0; padding: 0; }
+    .toggle-switch.active { background: #46ae7e; }
+    .toggle-switch::after { content: ''; position: absolute; width: 24px; height: 24px; background: white; border-radius: 50%; top: 2px; left: 2px; transition: .3s; }
+    .toggle-switch.active::after { left: 24px; }
+    .save-badge { background: #fff3cd; color: #86650a; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+    .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 80px; }
+    .plan-card { background: white; border: 1px solid #dfe7e2; border-radius: 12px; padding: 36px 28px; position: relative; transition: .3s; }
+    .plan-card.featured { border-color: #46ae7e; transform: scale(1.05); box-shadow: 0 20px 40px rgba(70, 174, 126, 0.12); }
+    .plan-card.featured::before { content: 'MOST POPULAR'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #46ae7e; color: white; font-size: 10px; font-weight: 700; padding: 5px 12px; border-radius: 12px; letter-spacing: 1px; }
+    .plan-name { font-size: 18px; font-weight: 700; margin: 0 0 8px; }
+    .plan-desc { color: #8a9793; font-size: 13px; margin: 0 0 24px; }
+    .plan-price { font-family: 'Space Grotesk'; font-size: 42px; font-weight: 700; margin: 0; letter-spacing: -1px; }
+    .plan-price small { font-size: 14px; color: #8a9793; font-weight: 400; margin-left: 4px; }
+    .plan-period { color: #8a9793; font-size: 12px; margin: 6px 0 28px; }
+    .plan-cta { width: 100%; border: 0; padding: 12px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; transition: .2s; margin-bottom: 32px; }
+    .plan-card:not(.featured) .plan-cta { background: transparent; color: #46ae7e; border: 1px solid #46ae7e; }
+    .plan-card:not(.featured) .plan-cta:hover { background: #f0faf3; }
+    .plan-card.featured .plan-cta { background: #46ae7e; color: white; }
+    .plan-card.featured .plan-cta:hover { background: #3a9670; }
+    .plan-features { list-style: none; margin: 0; padding: 0; }
+    .plan-features li { padding: 10px 0; border-bottom: 1px solid #f0f3f1; font-size: 13px; color: #456057; display: flex; align-items: flex-start; gap: 10px; }
+    .plan-features li:last-child { border: 0; }
+    .plan-features .check { color: #46ae7e; font-weight: 700; min-width: 16px; }
+    .plan-features .x { color: #b8c1ba; }
+    .faq-section { max-width: 700px; margin: 0 auto; }
+    .faq-item { margin-bottom: 20px; border-bottom: 1px solid #edf1ee; padding-bottom: 20px; }
+    .faq-item:last-child { border: 0; }
+    .faq-q { font-weight: 600; font-size: 15px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: #172322; }
+    .faq-q span { color: #46ae7e; font-size: 20px; }
+    .faq-a { color: #7e8d87; font-size: 13px; line-height: 1.6; margin-top: 12px; display: none; }
+    .faq-a.open { display: block; }
+    .faq-section h2 { text-align: center; font-family: 'Space Grotesk'; font-size: 28px; margin-bottom: 48px; }
+    @media (max-width: 1024px) {
+      .plans-grid { grid-template-columns: 1fr; }
+      .plan-card.featured { transform: scale(1); }
+      .pricing-hero h1 { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="index.html"><span class="brand-mark">✦</span><span>clipwise</span></a>
+      <nav class="nav" aria-label="Main navigation">
+        <a class="nav-item" href="index.html"><span>⌘</span> Workspace</a>
+        <a class="nav-item" href="index.html"><span>▣</span> My clips <b>12</b></a>
+        <a class="nav-item" href="index.html"><span>◕</span> Analytics</a>
+        <a class="nav-item active" href="pricing.html"><span>💳</span> Pricing</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <a class="nav-item" href="#"><span>⚙</span> Settings</a>
+        <div class="profile"><div class="avatar">JM</div><div><strong>Jordan Miller</strong><small>Creator plan</small></div><span class="more">•••</span></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar"><div class="breadcrumb"><span>Pricing</span><em>/</em> Plans &amp; billing</div><div class="top-actions"><button class="icon-button" aria-label="Notifications">☰</button><button class="help">?</button></div></header>
+      <div class="content">
+        <section class="pricing-hero">
+          <p class="eyebrow">SIMPLE PRICING <span></span></p>
+          <h1>Pay as you grow</h1>
+          <p>All plans include the core clipping engine. Scale when you need more clips per month.</p>
+          <div class="billing-toggle">
+            <span class="toggle-label">Monthly</span>
+            <button class="toggle-switch active" id="billingToggle" aria-label="Toggle annual billing"></button>
+            <span class="toggle-label">Annual <span class="save-badge">Save 20%</span></span>
+          </div>
+        </section>
+
+        <section class="plans-grid" id="plansGrid">
+          <div class="plan-card">
+            <h3 class="plan-name">Starter</h3>
+            <p class="plan-desc">Perfect for trying it out</p>
+            <p class="plan-price">Free<small>/mo</small></p>
+            <p class="plan-period">Always free. No card required.</p>
+            <button class="plan-cta">Get started</button>
+            <ul class="plan-features">
+              <li><span class="check">✓</span> 5 clips/month</li>
+              <li><span class="check">✓</span> Basic AI ratings</li>
+              <li><span class="check">✓</span> 480p exports</li>
+              <li><span class="x">✗</span> Custom branding</li>
+              <li><span class="x">✗</span> Batch processing</li>
+              <li><span class="x">✗</span> Priority support</li>
+            </ul>
+          </div>
+
+          <div class="plan-card featured">
+            <h3 class="plan-name">Creator</h3>
+            <p class="plan-desc">For serious creators</p>
+            <p class="plan-price">$29<small>/mo</small></p>
+            <p class="plan-period" id="creatorPrice">$290/year, billed annually</p>
+            <button class="plan-cta">Upgrade now</button>
+            <ul class="plan-features">
+              <li><span class="check">✓</span> 50 clips/month</li>
+              <li><span class="check">✓</span> Advanced AI ratings</li>
+              <li><span class="check">✓</span> 1080p exports</li>
+              <li><span class="check">✓</span> Custom branding</li>
+              <li><span class="check">✓</span> Email support</li>
+              <li><span class="x">✗</span> Batch processing</li>
+            </ul>
+          </div>
+
+          <div class="plan-card">
+            <h3 class="plan-name">Studio</h3>
+            <p class="plan-desc">For production teams</p>
+            <p class="plan-price">$99<small>/mo</small></p>
+            <p class="plan-period" id="studioPrice">$990/year, billed annually</p>
+            <button class="plan-cta">Contact sales</button>
+            <ul class="plan-features">
+              <li><span class="check">✓</span> Unlimited clips</li>
+              <li><span class="check">✓</span> Premium AI + custom models</li>
+              <li><span class="check">✓</span> 4K exports</li>
+              <li><span class="check">✓</span> Custom branding</li>
+              <li><span class="check">✓</span> Batch processing</li>
+              <li><span class="check">✓</span> Priority support</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="faq-section">
+          <h2>Common questions</h2>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              Do you offer refunds?
+              <span>+</span>
+            </div>
+            <div class="faq-a">Yes, we offer a 14-day money-back guarantee on all paid plans if you're not satisfied for any reason. After 14 days, monthly subscriptions can be canceled anytime with no penalty.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              Can I switch plans anytime?
+              <span>+</span>
+            </div>
+            <div class="faq-a">Absolutely. Upgrade or downgrade your plan at any time. If you upgrade, we'll prorate the difference. If you downgrade, credits will be applied to your next billing cycle.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              What payment methods do you accept?
+              <span>+</span>
+            </div>
+            <div class="faq-a">We accept all major credit and debit cards (Visa, Mastercard, American Express), as well as PayPal and bank transfers for annual plans. All payments are processed securely through Stripe.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              Do you offer team or enterprise plans?
+              <span>+</span>
+            </div>
+            <div class="faq-a">Yes! For teams needing custom limits, SSO, or dedicated support, reach out to our sales team at sales@clipwise.ai. We'll build a plan that fits your needs.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              Do you provide API access?
+              <span>+</span>
+            </div>
+            <div class="faq-a">API access is available on the Studio plan. You'll get webhooks, batch processing endpoints, and custom model training. Full documentation is in your dashboard.</div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('billingToggle');
+    const creatorPrice = document.getElementById('creatorPrice');
+    const studioPrice = document.getElementById('studioPrice');
+
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('active');
+      if (toggle.classList.contains('active')) {
+        creatorPrice.textContent = '$290/year, billed annually';
+        studioPrice.textContent = '$990/year, billed annually';
+      } else {
+        creatorPrice.textContent = '$29/month';
+        studioPrice.textContent = '$99/month';
+      }
+    });
+
+    function toggleFaq(element) {
+      const answer = element.nextElementSibling;
+      const span = element.querySelector('span');
+      answer.classList.toggle('open');
+      span.textContent = answer.classList.contains('open') ? '−' : '+';
+    }
+  </script>
+</body>
+</html>
