@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Turn long-form videos into high-performing short clips with Clipwise." />
+  <title>Clipwise — AI clips that perform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">✦</span><span>clipwise</span></a>
+      <nav class="nav" aria-label="Main navigation">
+        <a class="nav-item active" href="#workspace"><span>⌘</span> Workspace</a>
+        <a class="nav-item" href="#clips"><span>▣</span> My clips <b>12</b></a>
+        <a class="nav-item" href="#analytics"><span>◒</span> Analytics</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="usage-label"><span>Monthly usage</span><span>68%</span></div>
+        <div class="progress"><i></i></div>
+        <p class="muted small">17 of 25 hours used</p>
+        <a class="upgrade" href="#">Upgrade plan <span>→</span></a>
+        <a class="nav-item" href="#settings"><span>⚙</span> Settings</a>
+        <div class="profile"><div class="avatar">JM</div><div><strong>Jordan Miller</strong><small>Creator plan</small></div><span class="more">•••</span></div>
+      </div>
+    </aside>
+
+    <main class="main" id="workspace">
+      <header class="topbar"><div class="breadcrumb"><span>Workspace</span><em>/</em> New project</div><div class="top-actions"><button class="icon-button" aria-label="Notifications">♧</button><button class="help">?</button></div></header>
+      <div class="content">
+        <section class="hero">
+          <div><p class="eyebrow">NEW PROJECT <span></span></p><h1>Make your next <span>moment</span> matter.</h1><p class="hero-copy">Drop in a video. We'll find the stories worth sharing.</p></div>
+          <div class="hero-art" aria-hidden="true"><div class="orb orb-a"></div><div class="orb orb-b"></div><div class="spark">✦</div></div>
+        </section>
+
+        <section class="drop-card" id="dropzone" aria-label="Upload a video">
+          <div class="drop-icon">↥</div><h2>Drop a video link here</h2><p>Paste a YouTube, Vimeo, or podcast URL to get started</p>
+          <div class="url-row"><input id="urlInput" type="url" placeholder="https://youtube.com/watch?v=..." aria-label="Video URL" /><button id="analyzeBtn">Find my clips <span>→</span></button></div>
+          <div class="drop-divider"><span>or</span></div>
+          <button class="upload-button" id="browseBtn">Upload a video file <span>⌘ U</span></button><input id="fileInput" type="file" accept="video/*" hidden />
+          <p class="privacy">🔒 Your videos are private and secure</p>
+        </section>
+
+        <section class="recent-section" id="clips"><div class="section-heading"><div><p class="eyebrow">YOUR WORKSPACE</p><h2>Recent clips</h2></div><div class="filters"><button class="filter active" data-filter="all">All clips <span>12</span></button><button class="filter" data-filter="top">Top rated</button><button class="filter" data-filter="draft">Drafts <span>3</span></button></div></div>
+          <div class="clip-grid" id="clipGrid"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
